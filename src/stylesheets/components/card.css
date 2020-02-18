@@ -1,0 +1,77 @@
+.container {
+  height: 150px;
+  background-color: #24752c;
+  flex-basis: 30%;
+  margin: 10px 10px 0;
+  justify-content: space-around;
+}
+
+.nameStyle {
+  text-align: center;
+  flex-basis: 12%;
+  /* margin-top: 10px; */
+  color: antiquewhite;
+  font-family: Arial;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.radioContainer {
+  /* margin-top: 10px; */
+  /* flex-basis: 10%; */
+  flex-direction: row;
+  justify-content: center;
+}
+
+.radioButton {
+  padding: 5px 15px;
+  background-color: antiquewhite;
+}
+
+.radioText {
+  font-size: .7rem;
+}
+
+.checkedradio {
+  background-color: rgb(136, 82, 10);
+}
+
+.priceSellContainer {
+  /* margin-top: 5px; */
+  flex-direction: row;
+  justify-content: center;
+  /* height: 10px; */
+  /* display: none; */
+  align-self: center;
+  align-items: baseline;
+}
+
+.priceButton {
+  /* height: 20px; */
+  padding: 0 8px;
+  background-color: rgb(138, 43, 43);
+}
+
+.priceButtonText {
+  /* display: block; */
+  text-align: center;
+  font-weight: 900;
+  /* font-size: 1rem; */
+  /* align-self: center; */
+  /* justify-self: center; */
+}
+
+.inputText {
+  /* background-color:rgba(214, 214, 214, 0.637); */
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(41, 40, 40);
+  /* font-size: .5rem; */
+  text-align: center;
+}
+
+.xxx {
+  padding: 0 5px;
+  background-color: blueviolet;
+  align-self: center;
+  align-items: baseline;
+}
