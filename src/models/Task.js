@@ -9,14 +9,9 @@ export default class Task extends Model {
   @field('amount') amount;
   @field('unit') unit;
 
-  @action async addTask(body) {
+  @action async deleteTask() {
     try {
-      return await this.collections.get('tasks').create(task => {
-        task.name = body.name;
-        task.category = body.category;
-        task.amount = body.amount;
-        task.unit = body.unit;
-      });
+      await super.destroyPermanently();
     } catch (error) {
       console.log(error);
     }

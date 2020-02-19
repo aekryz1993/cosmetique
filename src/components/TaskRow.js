@@ -4,14 +4,23 @@ import withObservables from '@nozbe/with-observables';
 
 import currentTasksStyle from '../stylesheets/components/currentTasks.css';
 
-const Task = ({task}) => (
-  <View className={currentTasksStyle.taskRow}>
-    <Text>{task.name}</Text>
-    <Text>{task.category}</Text>
-    <Text>{task.unit}</Text>
-    <Text>{task.amount}</Text>
-  </View>
-);
+const Task = ({task}) => {
+  const deleteTask = () => {
+    task.deleteTask();
+  };
+  return (
+    <View className={currentTasksStyle.taskRow}>
+      <Text>{task.name}</Text>
+      <Text>{task.category}</Text>
+      <Text>{task.unit}</Text>
+      <Text>{task.amount}</Text>
+      <Text style={currentTasksStyle.delete} onPress={() => deleteTask()}>
+        X
+      </Text>
+      {/* < */}
+    </View>
+  );
+};
 
 const enhance = withObservables(['task'], ({task}) => ({
   task: task.observe(),

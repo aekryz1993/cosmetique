@@ -7,3 +7,9 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.delete {
+  color: rgb(145, 14, 14);
+  font-size: 1.2rem;
+  font-weight: 900;
+}
