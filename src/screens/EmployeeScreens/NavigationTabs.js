@@ -5,7 +5,7 @@ import {createAppContainer} from 'react-navigation';
 import TabCategory from './TabCategory';
 import {Q} from '@nozbe/watermelondb';
 
-const TabsNavigation = ({productCollection, database}) =>
+const TabsNavigation = ({productCollection, database, tasksCollection}) =>
   createMaterialTopTabNavigator(
     {
       Tab1: {
@@ -13,7 +13,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab1'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
       Tab2: {
@@ -21,7 +27,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab2'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
       Tab3: {
@@ -29,7 +41,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab3'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
       Tab4: {
@@ -37,7 +55,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab4'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
       Tab5: {
@@ -45,7 +69,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab5'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
       Tab6: {
@@ -53,7 +83,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab6'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
       Tab7: {
@@ -61,7 +97,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab7'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
       Tab8: {
@@ -69,7 +111,13 @@ const TabsNavigation = ({productCollection, database}) =>
           const products = productCollection
             .query(Q.where('category', 'tab8'))
             .fetch();
-          return <TabCategory products={products} database={database} />;
+          return (
+            <TabCategory
+              products={products}
+              database={database}
+              tasksCollection={tasksCollection}
+            />
+          );
         },
       },
     },
@@ -95,9 +143,9 @@ const TabsNavigation = ({productCollection, database}) =>
     },
   );
 
-export default ({productCollection, database}) => {
+export default ({productCollection, database, tasksCollection}) => {
   const AppContainer = createAppContainer(
-    TabsNavigation({productCollection, database}),
+    TabsNavigation({productCollection, database, tasksCollection}),
   );
   return <AppContainer />;
 };

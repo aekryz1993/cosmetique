@@ -1,0 +1,13 @@
+.container {
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.sum {
+  width: 50%;
+  height: 100%;
+  background-color: rgba(94, 51, 51, 0.397);
+  color: aliceblue;
+}

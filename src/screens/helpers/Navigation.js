@@ -6,7 +6,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import AuthLoadingScreen from './AuthLoadingScreen';
 import HomeScreen from '../HomeScreen';
 import AdminScreen from '../AdminScreen';
-import EmployeeScreen from '../EmployeeScreen';
+import EnhancedEmployeeScreen from '../EmployeeScreen';
 import AppLoadingScreen from './AppLoadingScreen';
 
 const AppStack = props =>
@@ -35,16 +35,21 @@ const AppStack = props =>
           );
         },
         navigationOptions: () => ({
-          // headerShown: false,
+          headerShown: false,
         }),
       },
       Employee: {
         screen: ({navigation}) => {
           const {database} = navigation.state.params;
-          return <EmployeeScreen database={database} navigation={navigation} />;
+          return (
+            <EnhancedEmployeeScreen
+              database={database}
+              navigation={navigation}
+            />
+          );
         },
         navigationOptions: () => ({
-          // headerShown: false,
+          headerShown: false,
         }),
       },
     },

@@ -3,11 +3,11 @@ import {View, Text} from 'react-native';
 
 import GroupRadioButtons from '../elements/GroupRadioButtons';
 import PriceSell from './PriceSell';
+import withObservables from '@nozbe/with-observables';
 
-const Card = ({product, cardStyle, database}) => {
+const Card = ({product, cardStyle, database, tasks}) => {
   const [amount, setAmount] = useState(1);
   const [unit, setUnit] = useState('item');
-
   const handleAmountChange = amountChange => {
     setAmount(Number(amountChange));
   };
@@ -32,7 +32,9 @@ const Card = ({product, cardStyle, database}) => {
         task.amount = body.amount;
         task.unit = body.unit;
       });
-      return newTask;
+      if (newTask) {
+        console.log(`${body.name} has been added`);
+      }
     });
   };
   return (
@@ -53,4 +55,10 @@ const Card = ({product, cardStyle, database}) => {
   );
 };
 
-export default Card;
+const enhance = withObservables(['tasks'], ({tasks}) => ({
+  tasks,
+}));
+
+const EnhancedCard = enhance(Card);
+
+export default EnhancedCard;

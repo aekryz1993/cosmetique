@@ -10,7 +10,7 @@ const employeeScreenStyle = StyleSheet.create({
     width: '70%',
   },
   secondContainer: {
-    backgroundColor: '#111',
+    backgroundColor: '#999',
     width: '30%',
   },
 });
