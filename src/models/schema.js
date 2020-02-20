@@ -30,6 +30,18 @@ export const mySchema = appSchema({
         {name: 'category', type: 'string'},
         {name: 'amount', type: 'number'},
         {name: 'unit', type: 'string'},
+        {name: 'buying_price', type: 'number'},
+        {name: 'selling_price', type: 'number'},
+      ],
+    }),
+    tableSchema({
+      name: 'finances',
+      columns: [
+        {name: 'profit', type: 'number'},
+        {name: 'date', type: 'string'},
+        {name: 'gain', type: 'number'},
+        {name: 'spent', type: 'number'},
+        {name: 'operation', type: 'string'},
       ],
     }),
   ],

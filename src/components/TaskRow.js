@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React from 'react';
+import {View, Text} from 'react-native';
 import withObservables from '@nozbe/with-observables';
 
 import currentTasksStyle from '../stylesheets/components/currentTasks.css';
 
-const Task = ({task}) => {
+const Task = ({task, finances}) => {
   const deleteTask = () => {
-    task.deleteTask();
+    task.deleteTask(finances[0], task._raw.selling_price);
   };
   return (
     <View className={currentTasksStyle.taskRow}>
@@ -17,7 +17,6 @@ const Task = ({task}) => {
       <Text style={currentTasksStyle.delete} onPress={() => deleteTask()}>
         X
       </Text>
-      {/* < */}
     </View>
   );
 };

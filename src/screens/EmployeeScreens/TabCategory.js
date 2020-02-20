@@ -1,12 +1,20 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import withObservables from '@nozbe/with-observables';
+import moment from 'moment';
+import {Q} from '@nozbe/watermelondb';
 
 import tabCategoryStyle from '../../stylesheets/layouts/tabCategory.css';
 import cardStyle from '../../stylesheets/components/card.css';
 import Card from '../../components/Card';
 
-const TabCategory = ({products, database, tasksCollection}) => {
+const TabCategory = ({
+  products,
+  database,
+  tasksCollection,
+  financesCollection,
+}) => {
+  const today = moment(Date.now()).format('DD MMMM YYYY');
   const fetchTasks = async () => {
     const tasks = await tasksCollection.query().fetch();
     return tasks;
@@ -21,7 +29,9 @@ const TabCategory = ({products, database, tasksCollection}) => {
             cardStyle={cardStyle}
             product={item}
             tasks={fetchTasks()}
+            financesCollection={financesCollection}
             database={database}
+            today={today}
           />
         )}
         numColumns={3}
@@ -29,6 +39,7 @@ const TabCategory = ({products, database, tasksCollection}) => {
     </View>
   );
 };
+
 const enhance = withObservables(['products'], ({products}) => ({
   products,
 }));

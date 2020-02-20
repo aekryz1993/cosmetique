@@ -5,7 +5,12 @@ import {createAppContainer} from 'react-navigation';
 import TabCategory from './TabCategory';
 import {Q} from '@nozbe/watermelondb';
 
-const TabsNavigation = ({productCollection, database, tasksCollection}) =>
+const TabsNavigation = ({
+  productCollection,
+  database,
+  tasksCollection,
+  financesCollection,
+}) =>
   createMaterialTopTabNavigator(
     {
       Tab1: {
@@ -18,6 +23,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -32,6 +38,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -46,6 +53,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -60,6 +68,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -74,6 +83,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -88,6 +98,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -102,6 +113,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -116,6 +128,7 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
               products={products}
               database={database}
               tasksCollection={tasksCollection}
+              financesCollection={financesCollection}
             />
           );
         },
@@ -143,9 +156,19 @@ const TabsNavigation = ({productCollection, database, tasksCollection}) =>
     },
   );
 
-export default ({productCollection, database, tasksCollection}) => {
+export default ({
+  productCollection,
+  database,
+  tasksCollection,
+  financesCollection,
+}) => {
   const AppContainer = createAppContainer(
-    TabsNavigation({productCollection, database, tasksCollection}),
+    TabsNavigation({
+      productCollection,
+      database,
+      tasksCollection,
+      financesCollection,
+    }),
   );
   return <AppContainer />;
 };

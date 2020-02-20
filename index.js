@@ -11,17 +11,19 @@ import {mySchema} from './src/models/schema';
 import User from './src/models/User';
 import Product from './src/models/Product';
 import AppNavigator from './src/screens/helpers/Navigation';
-// import AppNavigator from './App';
+// import migrations from './src/models/migrations';
 import Task from './src/models/Task.js';
+import Finance from './src/models/Finance.js';
 
 const adapter = new SQLiteAdapter({
   dbName: 'Cosmetique',
   schema: mySchema,
+  // migrations,
 });
 
 const database = new Database({
   adapter,
-  modelClasses: [User, Product, Task],
+  modelClasses: [User, Product, Task, Finance],
   actionsEnabled: true,
 });
 
