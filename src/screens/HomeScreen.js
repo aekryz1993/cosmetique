@@ -23,8 +23,13 @@ const HomeScreen = ({navigation, database}) => {
   const [password, setPassword] = useState(null);
 
   useEffect(() => {
-    addUser(database, usersCollection, admin);
-    addUser(database, usersCollection, employee);
+    const createAdmin = () =>
+      new Promise((resolve, reject) => {
+        const newAdmin = addUser(database, usersCollection, admin);
+        resolve(newAdmin);
+      });
+
+    createAdmin().then(() => addUser(database, usersCollection, employee));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -60,13 +65,11 @@ const HomeScreen = ({navigation, database}) => {
         clearFields();
         await AsyncStorage.setItem('@user_token', user._raw.id);
         await AsyncStorage.setItem('@screen_token', 'admin');
-        // navigation.navigate('Admin', {user: user, database: database});
         navigation.navigate('App');
       } else if (rightPassword && category === 'employee') {
         clearFields();
         await AsyncStorage.setItem('@user_token', user._raw.id);
         await AsyncStorage.setItem('@screen_token', 'employee');
-        // navigation.navigate('Employee', {user: user, database: database});
         navigation.navigate('App');
       } else {
         clearFields();

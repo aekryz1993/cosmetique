@@ -16,11 +16,12 @@ export const mySchema = appSchema({
       columns: [
         {name: 'name', type: 'string'},
         {name: 'category', type: 'string'},
-        {name: 'amount', type: 'number'},
-        {name: 'buying_price_piece', type: 'number'},
-        {name: 'buying_price_pack', type: 'number'},
-        {name: 'selling_price_piece', type: 'number'},
-        {name: 'selling_price_pack', type: 'number'},
+        {name: 'amount_piece', type: 'number', isOptional: true},
+        {name: 'amount_pack', type: 'number', isOptional: true},
+        {name: 'buying_price_piece', type: 'number', isOptional: true},
+        {name: 'buying_price_pack', type: 'number', isOptional: true},
+        {name: 'selling_price_piece', type: 'number', isOptional: true},
+        {name: 'selling_price_pack', type: 'number', isOptional: true},
       ],
     }),
     tableSchema({

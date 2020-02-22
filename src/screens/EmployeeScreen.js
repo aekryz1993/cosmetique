@@ -17,6 +17,7 @@ const EmployeeScreen = ({database, navigation}) => {
   const logout = async () => {
     await AsyncStorage.clear();
     navigation.navigate('Home');
+    await tasksCollection.query().destroyAllPermanently();
   };
 
   return (

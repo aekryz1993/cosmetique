@@ -2,7 +2,6 @@ import React from 'react';
 import {View, FlatList} from 'react-native';
 import withObservables from '@nozbe/with-observables';
 import moment from 'moment';
-import {Q} from '@nozbe/watermelondb';
 
 import tabCategoryStyle from '../../stylesheets/layouts/tabCategory.css';
 import cardStyle from '../../stylesheets/components/card.css';
@@ -13,6 +12,7 @@ const TabCategory = ({
   database,
   tasksCollection,
   financesCollection,
+  tab,
 }) => {
   const today = moment(Date.now()).format('DD MMMM YYYY');
   const fetchTasks = async () => {

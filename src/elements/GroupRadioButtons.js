@@ -12,26 +12,37 @@ const radioOptions = [
   },
 ];
 
-const GroupRadioButtons = ({cardStyle, handleUnitChange}) => {
+const GroupRadioButtons = ({cardStyle, handleUnitChange, hasPacket}) => {
   const [value, setValue] = useState('item');
 
   const checkedRadio = key => (value === key ? cardStyle.checkedradio : '');
 
   return (
     <View style={cardStyle.radioContainer}>
-      {radioOptions.map(item => {
-        return (
-          <TouchableOpacity
-            style={[cardStyle.radioButton, checkedRadio(item.key)]}
-            key={item.key}
-            onPress={() => {
-              setValue(item.key);
-              handleUnitChange(item.key);
-            }}>
-            <Text style={cardStyle.radioText}>{item.text}</Text>
-          </TouchableOpacity>
-        );
-      })}
+      {hasPacket ? (
+        radioOptions.map(item => {
+          return (
+            <TouchableOpacity
+              style={[cardStyle.radioButton, checkedRadio(item.key)]}
+              key={item.key}
+              onPress={() => {
+                setValue(item.key);
+                handleUnitChange(item.key);
+              }}>
+              <Text style={cardStyle.radioText}>{item.text}</Text>
+            </TouchableOpacity>
+          );
+        })
+      ) : (
+        <TouchableOpacity
+          style={[cardStyle.radioButton, checkedRadio('item')]}
+          onPress={() => {
+            setValue('item');
+            handleUnitChange('item');
+          }}>
+          <Text style={cardStyle.radioText}>Piéce</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

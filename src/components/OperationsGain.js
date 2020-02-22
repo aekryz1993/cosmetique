@@ -14,7 +14,11 @@ const OperationsGain = ({
 }) => {
   return (
     <View style={employeeScreenStyle.secondContainer}>
-      <SumTotal finances={finances} today={today} />
+      <SumTotal
+        finances={finances}
+        today={today}
+        tasksCollection={tasksCollection}
+      />
       <EnhancedCurrentTasks
         tasksCollection={tasksCollection}
         finances={finances}

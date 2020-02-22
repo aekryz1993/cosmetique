@@ -5,9 +5,8 @@ import {Q} from '@nozbe/watermelondb';
 
 import GroupRadioButtons from '../elements/GroupRadioButtons';
 import PriceSell from './PriceSell';
-import {addFinance} from '../seed/finance';
 
-const Card = ({product, cardStyle, database, finances, financesCollection}) => {
+const Card = ({product, cardStyle, database, finances}) => {
   const [amount, setAmount] = useState(1);
   const [unit, setUnit] = useState('item');
   const handleAmountChange = amountChange => {
@@ -44,8 +43,8 @@ const Card = ({product, cardStyle, database, finances, financesCollection}) => {
         console.log(`${body.name} has been added`);
         const price =
           unit === 'item'
-            ? product.selling_price_piece
-            : product.selling_price_pack;
+            ? product.selling_price_piece * body.amount
+            : product.selling_price_pack * body.amount;
         await action.subAction(() => finances[0].updateGain(price));
       }
     });
@@ -55,6 +54,7 @@ const Card = ({product, cardStyle, database, finances, financesCollection}) => {
       <Text style={cardStyle.nameStyle}>{product.name}</Text>
       <GroupRadioButtons
         cardStyle={cardStyle}
+        hasPacket={product.amount_pack}
         handleUnitChange={handleUnitChange}
       />
       <PriceSell

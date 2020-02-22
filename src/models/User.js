@@ -63,7 +63,8 @@ export default class User extends Model {
       const newProduct = await productsCollection.create(product => {
         product.name = body.productName;
         product.category = body.category;
-        product.amount = Number(body.amountField);
+        product.amount_piece = Number(body.amountPieceField);
+        product.amount_pack = Number(body.amountPackField);
         product.buying_price_piece = Number(body.buyingPricePiece);
         product.buying_price_pack = Number(body.buyingPricePack);
         product.selling_price_piece = Number(body.sellingPricePiece);

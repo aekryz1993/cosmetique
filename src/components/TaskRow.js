@@ -6,7 +6,7 @@ import currentTasksStyle from '../stylesheets/components/currentTasks.css';
 
 const Task = ({task, finances}) => {
   const deleteTask = () => {
-    task.deleteTask(finances[0], task._raw.selling_price);
+    task.deleteTask(finances[0], task._raw.selling_price, task._raw.amount);
   };
   return (
     <View className={currentTasksStyle.taskRow}>

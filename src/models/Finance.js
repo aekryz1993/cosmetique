@@ -1,5 +1,5 @@
-import {Model} from '@nozbe/watermelondb';
-import {field, action} from '@nozbe/watermelondb/decorators';
+import {Model, Q} from '@nozbe/watermelondb';
+import {field, action, lazy} from '@nozbe/watermelondb/decorators';
 
 export default class Finance extends Model {
   static table = 'finances';
@@ -9,6 +9,10 @@ export default class Finance extends Model {
   @field('gain') gain;
   @field('spent') spent;
   @field('operation') operation;
+
+  @lazy tasks = this.collections.get('tasks').query();
+  @lazy products = taskName =>
+    this.collections.get('products').query(Q.where('name', taskName));
 
   @action async updateGain(sum) {
     try {
@@ -21,11 +25,10 @@ export default class Finance extends Model {
     }
   }
 
-  @action async deleteTaskGain(sum) {
-    console.log(sum);
+  @action async deleteTaskGain(sum, amount) {
     try {
       await super.update(finance => {
-        finance.gain = finance.gain - sum;
+        finance.gain = finance.gain - sum * amount;
         finance.operation = 'gain';
       });
     } catch (error) {
@@ -49,10 +52,18 @@ export default class Finance extends Model {
       await super.update(finance => {
         if (finance.operation === 'gain') {
           finance.profit = finance.profit + finance.gain;
+          finance.gain = 0;
         } else if (finance.operation === 'spent') {
           finance.profit = finance.profit - finance.spend;
+          finance.spend = 0;
         }
       });
+      // await this.subAction(() =>
+      //   super.tasks.fetch().map(async task => {
+      //     const products = await super.products(task._raw.name).fetch();
+      //     products[0].updateSell(task._raw.amount, task);
+      //   }),
+      // );
     } catch (error) {
       console.log(error);
     }

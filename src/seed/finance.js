@@ -1,8 +1,9 @@
 import moment from 'moment';
 import {Q} from '@nozbe/watermelondb';
 
-export const addFinance = async (database, collection, today) => {
+export const addFinance = async (database, today) => {
   try {
+    const collection = database.collections.get('finances');
     const createFinance = await database.action(async () => {
       const todayFinance = await collection
         .query(Q.where('date', today))
