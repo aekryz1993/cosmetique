@@ -33,6 +33,7 @@ export const mySchema = appSchema({
         {name: 'unit', type: 'string'},
         {name: 'buying_price', type: 'number'},
         {name: 'selling_price', type: 'number'},
+        {name: 'exception', type: 'number'},
       ],
     }),
     tableSchema({

@@ -5,6 +5,7 @@ import {Q} from '@nozbe/watermelondb';
 
 import GroupRadioButtons from '../elements/GroupRadioButtons';
 import PriceSell from './PriceSell';
+import { tabacException } from './helpers/exceptions/tabac';
 
 const Card = ({product, cardStyle, database, finances}) => {
   const [amount, setAmount] = useState(1);
@@ -27,9 +28,30 @@ const Card = ({product, cardStyle, database, finances}) => {
       buying_price: unit === 'item' ? product.buying_price_piece : product.buying_price_pack,
       // eslint-disable-next-line prettier/prettier
       selling_price: unit === 'item' ? product.selling_price_piece : product.selling_price_pack,
+      exception: 0,
     };
     const tasksCollection = database.collections.get('tasks');
 
+    let price =
+      unit === 'item'
+        ? product.selling_price_piece * body.amount
+        : product.selling_price_pack * body.amount;
+
+    tabacException.map(item => {
+      if (
+        item.toUpperCase() === product.name.toUpperCase() &&
+        unit === 'item'
+      ) {
+        const excetionalModulo = amount % 4;
+        const exceptionalNum = amount - excetionalModulo;
+        const exceptionalDev = exceptionalNum / 4;
+        const exceptionalTotal = 50 * exceptionalDev;
+        body.selling_price =
+          exceptionalTotal + body.selling_price * excetionalModulo;
+        price = body.selling_price;
+        body.exception = 1;
+      }
+    });
     await database.action(async action => {
       const newTask = await tasksCollection.create(task => {
         task.name = body.name;
@@ -38,13 +60,10 @@ const Card = ({product, cardStyle, database, finances}) => {
         task.unit = body.unit;
         task.buying_price = body.buying_price;
         task.selling_price = body.selling_price;
+        task.exception = body.exception;
       });
       if (newTask) {
         console.log(`${body.name} has been added`);
-        const price =
-          unit === 'item'
-            ? product.selling_price_piece * body.amount
-            : product.selling_price_pack * body.amount;
         await action.subAction(() => finances[0].updateGain(price));
       }
     });

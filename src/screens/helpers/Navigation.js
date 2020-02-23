@@ -80,7 +80,17 @@ const AuthStack = props =>
 const SwitchNavigation = props =>
   createSwitchNavigator(
     {
-      AuthLoading: AuthLoadingScreen,
+      AuthLoading: {
+        screen: ({navigation}) => {
+          const {createTodayFinance} = navigation.state.params;
+          createTodayFinance();
+          return <AuthLoadingScreen navigation={navigation} />;
+        },
+        navigationOptions: () => ({
+          headerShown: false,
+        }),
+      },
+      // AuthLoading: AuthLoadingScreen,
       App: AppStack(props),
       Auth: AuthStack(props),
     },

@@ -1,9 +1,9 @@
 import {Q} from '@nozbe/watermelondb';
 import bcrypt from 'react-native-bcrypt';
 import isaac from 'isaac';
-import moment from 'moment';
+// import moment from 'moment';
 
-import {addFinance} from './finance';
+// import {addFinance} from './finance';
 
 export const addUser = async (database, collection, body) => {
   try {
@@ -33,8 +33,8 @@ export const addUser = async (database, collection, body) => {
             }),
         ),
       );
-      const today = moment(Date.now()).format('DD MMMM YYYY');
-      await action.subAction(() => addFinance(database, today));
+      // const today = moment(Date.now()).format('DD MMMM YYYY');
+      // await action.subAction(() => addFinance(database, today));
     });
   } catch (error) {
     console.log(error);

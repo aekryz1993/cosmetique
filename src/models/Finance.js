@@ -25,10 +25,14 @@ export default class Finance extends Model {
     }
   }
 
-  @action async deleteTaskGain(sum, amount) {
+  @action async deleteTaskGain(sum, amount, exception) {
     try {
       await super.update(finance => {
-        finance.gain = finance.gain - sum * amount;
+        if (!exception) {
+          finance.gain = finance.gain - sum * amount;
+        } else {
+          finance.gain = finance.gain - sum;
+        }
         finance.operation = 'gain';
       });
     } catch (error) {
@@ -47,7 +51,7 @@ export default class Finance extends Model {
     }
   }
 
-  @action async updateProfit() {
+  @action async updateProfit(tasks, _finance) {
     try {
       await super.update(finance => {
         if (finance.operation === 'gain') {
@@ -58,9 +62,10 @@ export default class Finance extends Model {
           finance.spend = 0;
         }
       });
+      // return this;
       // await this.subAction(() =>
-      //   super.tasks.fetch().map(async task => {
-      //     const products = await super.products(task._raw.name).fetch();
+      //   tasks.map(async task => {
+      //     const products = await _finance.products(task._raw.name).fetch();
       //     products[0].updateSell(task._raw.amount, task);
       //   }),
       // );

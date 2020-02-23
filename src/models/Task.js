@@ -10,11 +10,14 @@ export default class Task extends Model {
   @field('unit') unit;
   @field('buying_price') buying_price;
   @field('selling_price') selling_price;
+  @field('exception') exception;
 
-  @action async deleteTask(finance, price, amount) {
+  @action async deleteTask(finance, price, amount, exception) {
     try {
       await super.destroyPermanently();
-      await this.subAction(() => finance.deleteTaskGain(price, amount));
+      await this.subAction(() =>
+        finance.deleteTaskGain(price, amount, exception),
+      );
     } catch (error) {
       console.log(error);
     }
