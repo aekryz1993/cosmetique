@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';
+// import 'react-native-gesture-handler';
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -31,6 +31,7 @@ const AppStack = props =>
             <AdminScreen
               navigation={navigation}
               usersCollection={usersCollection}
+              database={database}
             />
           );
         },
@@ -83,8 +84,11 @@ const SwitchNavigation = props =>
       AuthLoading: {
         screen: ({navigation}) => {
           const {createTodayFinance} = navigation.state.params;
+          const {database} = navigation.state.params;
           createTodayFinance();
-          return <AuthLoadingScreen navigation={navigation} />;
+          return (
+            <AuthLoadingScreen navigation={navigation} database={database} />
+          );
         },
         navigationOptions: () => ({
           headerShown: false,

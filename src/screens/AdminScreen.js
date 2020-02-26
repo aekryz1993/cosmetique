@@ -4,16 +4,18 @@ import {Button} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import {TextInputField} from '../elements/TextInput';
+import AdminDrawserNav from './helpers/AdminDrawerNav';
 
 const style = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     flex: 1,
-    padding: 20,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 0,
   },
 });
 
-const AdminScreen = ({navigation, usersCollection}) => {
+const AdminScreen = ({navigation, usersCollection, database}) => {
   const [productName, setProductName] = useState(null);
   const [category, setCategory] = useState('tab1');
   const [amountPieceField, setAmountPieceField] = useState(null);
@@ -75,76 +77,7 @@ const AdminScreen = ({navigation, usersCollection}) => {
 
   return (
     <View style={style.container}>
-      <Button title="Logout" onPress={() => logout()} />
-      <ScrollView>
-        <TextInputField
-          placeholder="Entrez le nom de produit"
-          label="Nom de produit"
-          onChangeText={t => setProductName(t)}
-          value={productName}
-          // errorMessage={error}
-        />
-
-        <Picker
-          selectedValue={category}
-          style={{height: 50, width: 150}}
-          onValueChange={itemValue => setCategory(itemValue)}>
-          {categories.map((_category, index) => (
-            <Picker.Item
-              key={index}
-              label={_category.label}
-              value={_category.value}
-            />
-          ))}
-        </Picker>
-
-        <TextInputField
-          placeholder="Entrez la quantité par piece"
-          label="Quantité par piece"
-          onChangeText={t => setAmountPieceField(t)}
-          value={amountPieceField}
-          // errorMessage={error}
-        />
-
-        <TextInputField
-          placeholder="Entrez la quantité par paquet"
-          label="Quantité par paquet"
-          onChangeText={t => setAmountPackField(t)}
-          value={amountPackField}
-          // errorMessage={error}
-        />
-
-        <TextInputField
-          placeholder="Prix d'achat par piece"
-          label="Entrez le prix d'achat par piece"
-          onChangeText={t => setbuyingPricePiece(t)}
-          // errorMessage={error}
-          value={buyingPricePiece}
-        />
-        <TextInputField
-          placeholder="Prix d'achat par paquet"
-          label="Entrez le prix d'achat par paquet"
-          onChangeText={t => setbuyingPricePack(t)}
-          // errorMessage={error}
-          value={buyingPricePack}
-        />
-        <TextInputField
-          placeholder="Entrez le prix de vente par piece"
-          label="Prix de vente par piece"
-          onChangeText={t => setsellingPricePiece(t)}
-          // errorMessage={error}
-          value={sellingPricePiece}
-        />
-        <TextInputField
-          placeholder="Entrez le prix de vente par paquet"
-          label="Prix de vente par paquet"
-          onChangeText={t => setsellingPricePack(t)}
-          // errorMessage={error}
-          value={sellingPricePack}
-        />
-
-        <Button title="Ajouter" onPress={() => addProduct()} />
-      </ScrollView>
+      <AdminDrawserNav navigation={navigation} />
     </View>
   );
 };

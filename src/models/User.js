@@ -49,6 +49,10 @@ export default class User extends Model {
 
   @action async addProduct(body) {
     try {
+      if (!body.productName) {
+        console.log('Entrez le nom de produit');
+        return;
+      }
       const productsCollection = this.collections.get('products');
 
       const existProduct = await productsCollection

@@ -23,13 +23,12 @@ const HomeScreen = ({navigation, database}) => {
   const [password, setPassword] = useState(null);
 
   useEffect(() => {
-    const createAdmin = () =>
-      new Promise((resolve, reject) => {
-        const newAdmin = addUser(database, usersCollection, admin);
-        resolve(newAdmin);
-      });
-
-    createAdmin().then(() => addUser(database, usersCollection, employee));
+    (async () => {
+      const newAdmin = await addUser(database, usersCollection, admin);
+      if (newAdmin) {
+        await addUser(database, usersCollection, employee);
+      }
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

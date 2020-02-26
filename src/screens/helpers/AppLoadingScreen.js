@@ -9,10 +9,24 @@ const AppLoadingScreen = ({navigation, database}) => {
   }, []);
 
   const _bootstrapAsync = () => {
+    const userTokenf = userToken => {
+      if (userToken === 'admin') {
+        return 'Admin';
+      }
+      if (userToken === 'employee') {
+        return 'Employee';
+      }
+    };
     AsyncStorage.getItem('@screen_token').then(userToken => {
-      navigation.navigate(userToken === 'admin' ? 'Admin' : 'Employee', {
-        database: database,
-      });
+      if (userToken) {
+        navigation.navigate(userTokenf(userToken), {
+          database: database,
+        });
+      } else {
+        navigation.push('Home', {
+          database: database,
+        });
+      }
     });
   };
 

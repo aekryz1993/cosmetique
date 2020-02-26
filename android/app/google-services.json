@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "801455562859",
+    "firebase_url": "https://cosmetique-6e5ea.firebaseio.com",
+    "project_id": "cosmetique-6e5ea",
+    "storage_bucket": "cosmetique-6e5ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801455562859:android:b774a26527338e9fca512e",
+        "android_client_info": {
+          "package_name": "com.cosmetique"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801455562859-45mvoke1089op9omtcb0pgss35mnntin.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cosmetique",
+            "certificate_hash": "aa8af4d2063a139d4c2c1f5cd76f117852321f5c"
+          }
+        },
+        {
+          "client_id": "801455562859-iticrbc2db5lu7smulrqslj0fp5kfsr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2xxek_tGjgSgypPir_f75vjMm3xIkhJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801455562859-iticrbc2db5lu7smulrqslj0fp5kfsr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
