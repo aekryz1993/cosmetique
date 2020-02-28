@@ -1,25 +1,20 @@
 import React, {useState} from 'react';
-import {
-  View,
-  FlatList,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Modal,
-  Image,
-} from 'react-native';
+import {View, FlatList, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Table, Row} from 'react-native-table-component';
 import withObservables from '@nozbe/with-observables';
 import {Icon} from 'react-native-elements';
+import {FAB} from 'react-native-paper';
 
 import tableStyle from '../../stylesheets/elements/table.css';
-import modalStyle from '../../stylesheets/components/modalProduct.css';
+import ModalDisplay from './ModalDisplay';
 
 const TabCategory = ({
   products,
   database,
   tasksCollection,
   financesCollection,
+  navigation,
+  usersCollection,
 }) => {
   const tableHead = [
     'Nom de product',
@@ -28,7 +23,7 @@ const TabCategory = ({
     '',
   ];
   const widthArr = [200, 150, 150, 310];
-  const [modelOpened, setModalOpened] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
   const [productFields, setProductFields] = useState({
     name: '',
     amount_piece: null,
@@ -38,8 +33,18 @@ const TabCategory = ({
     selling_price_piece: null,
     selling_price_pack: null,
   });
+  const [operation, setOperation] = useState(null);
+  const [product, setProduct] = useState(null);
 
-  // const _alertIndex = (index, item) => {};
+  const _editProduct = data => {
+    console.log(data);
+  };
+
+  const _deleteProduct = data => {
+    setProduct(data);
+    setOperation('delete');
+    setModalOpened(true);
+  };
 
   const _displayProduct = (index, item) => {
     setProductFields({
@@ -51,16 +56,26 @@ const TabCategory = ({
       sellingPricePiece: item.selling_price_piece,
       sellingPricePack: item.selling_price_pack,
     });
+    setOperation('read');
     setModalOpened(true);
   };
 
-  const element = (data, index) =>
+  const _addProduct = () => {
+    setOperation('add');
+    setModalOpened(true);
+  };
+
+  const element = (data, index, item) =>
     data.map((cell, cellIndex) => {
       const cellElement =
         cellIndex === 3 ? (
           <View style={tableStyle.actionUD}>
-            <Icon name="edit" color="gray" />
-            <Icon name="delete" color="red" />
+            <Icon name="edit" color="gray" onPress={() => _editProduct(item)} />
+            <Icon
+              name="delete"
+              color="red"
+              onPress={() => _deleteProduct(item)}
+            />
           </View>
         ) : cellIndex === 0 ? (
           <Text style={styles.textRowName}>{cell}</Text>
@@ -72,42 +87,24 @@ const TabCategory = ({
 
   return (
     <View style={tableStyle.container}>
+      <FAB
+        style={styles.fab}
+        small
+        icon={require('../../../public/images/plus.png')}
+        onPress={() => _addProduct()}
+      />
       <View style={tableStyle.height}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modelOpened}
-          onDismiss={() => setModalOpened(false)}
-          onRequestClose={() => setModalOpened(false)}>
-          <View style={modalStyle.container}>
-            <TouchableOpacity
-              style={modalStyle.closebtn}
-              onPress={() => setModalOpened(false)}>
-              <Image source={require('../../../public/images/close.png')} />
-            </TouchableOpacity>
-            <Text style={modalStyle.name}>{productFields.name}</Text>
-            <View style={modalStyle.otherFieldsContainer}>
-              <Text style={modalStyle.otherFields}>
-                {`Quantité (pièce): ${productFields.amountPiece}`}
-              </Text>
-              <Text style={modalStyle.otherFields}>
-                {`Quantité (paquet): ${productFields.amountPack}`}
-              </Text>
-              <Text style={modalStyle.otherFields}>
-                {`Prix d'achat (pièce): ${productFields.buyingPricePiece} DA`}
-              </Text>
-              <Text style={modalStyle.otherFields}>
-                {`Prix d'achat (paquet): ${productFields.buyingPricePack} DA`}
-              </Text>
-              <Text style={modalStyle.otherFields}>
-                {`Prix de vente (pièce): ${productFields.sellingPricePiece} DA`}
-              </Text>
-              <Text style={modalStyle.otherFields}>
-                {`Prix de vente (paquet): ${productFields.sellingPricePack} DA`}
-              </Text>
-            </View>
-          </View>
-        </Modal>
+        <ModalDisplay
+          visible={modalOpened}
+          setVisible={setModalOpened}
+          productFields={productFields}
+          operation={operation}
+          setOperation={setOperation}
+          navigation={navigation}
+          usersCollection={usersCollection}
+          product={product}
+          setProduct={setProduct}
+        />
 
         {/* eslint-disable-next-line react-native/no-inline-styles */}
         <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
@@ -133,7 +130,7 @@ const TabCategory = ({
                   onPress={() => _displayProduct(index, item._raw)}>
                   <Row
                     key={index}
-                    data={element(rowProduct, index)}
+                    data={element(rowProduct, index, item)}
                     widthArr={widthArr}
                     style={[
                       styles.row,
@@ -175,10 +172,17 @@ const styles = StyleSheet.create({
   },
   dataWrapper: {marginTop: -1},
   row: {flexDirection: 'row', backgroundColor: '#FFF1C1'},
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    zIndex: 3,
+  },
 });
 
 const enhance = withObservables(['products'], ({products}) => ({
-  products,
+  products: products.observe(),
 }));
 
 const EnhancedTabCategory = enhance(TabCategory);

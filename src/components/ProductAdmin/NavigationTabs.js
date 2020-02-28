@@ -10,16 +10,18 @@ const TabsNavigation = ({
   database,
   tasksCollection,
   financesCollection,
+  usersCollection,
+  navigation,
 }) =>
   createMaterialTopTabNavigator(
     {
       Tabac: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab1'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab1'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -30,11 +32,11 @@ const TabsNavigation = ({
       },
       Boisson: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab2'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab2'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -45,11 +47,11 @@ const TabsNavigation = ({
       },
       Bonbons: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab3'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab3'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -60,11 +62,11 @@ const TabsNavigation = ({
       },
       Chocolat: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab4'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab4'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -75,11 +77,11 @@ const TabsNavigation = ({
       },
       Cosmétique: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab5'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab5'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -90,11 +92,11 @@ const TabsNavigation = ({
       },
       Informatique: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab6'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab6'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -105,11 +107,11 @@ const TabsNavigation = ({
       },
       Flexy: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab7'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab7'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -120,11 +122,11 @@ const TabsNavigation = ({
       },
       Tab8: {
         screen: () => {
-          const products = productCollection
-            .query(Q.where('category', 'tab8'))
-            .fetch();
+          const products = productCollection.query(Q.where('category', 'tab8'));
           return (
             <TabCategory
+              navigation={navigation}
+              usersCollection={usersCollection}
               products={products}
               database={database}
               tasksCollection={tasksCollection}
@@ -161,6 +163,8 @@ export default ({
   database,
   tasksCollection,
   financesCollection,
+  usersCollection,
+  navigation,
 }) => {
   const AppContainer = createAppContainer(
     TabsNavigation({
@@ -168,6 +172,8 @@ export default ({
       database,
       tasksCollection,
       financesCollection,
+      usersCollection,
+      navigation,
     }),
   );
   return <AppContainer />;

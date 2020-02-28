@@ -1,9 +1,6 @@
 .container {
   background-color: #23719ef1;
-  width: 80%;
-  height: 70%;
-  margin-left: 10%;
-  margin-top: 10%;
+  flex: 1;
 }
 
 .name {

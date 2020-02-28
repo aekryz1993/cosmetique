@@ -26,4 +26,20 @@ export default class Product extends Model {
     });
     await this.subAction(() => task.deleteOnlyTasks());
   }
+
+  @action async updateProduct(body) {
+    await super.update(product => {
+      product.name = body.productName;
+      product.amount_piece = body.amountPieceField;
+      product.amount_pack = body.amountPackField;
+      product.buying_price_piece = body.buyingPricePiece;
+      product.buying_price_pack = body.buyingPricePack;
+      product.selling_price_piece = body.sellingPricePiece;
+      product.selling_price_pack = body.sellingPricePack;
+    });
+  }
+
+  @action async deleteProduct() {
+    await super.destroyPermanently();
+  }
 }
