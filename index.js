@@ -7,7 +7,7 @@ import {name as appName} from './app.json';
 import {Database} from '@nozbe/watermelondb';
 import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite';
 import moment from 'moment';
-import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 import {mySchema} from './src/models/schema';
 import User from './src/models/User';

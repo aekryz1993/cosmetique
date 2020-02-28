@@ -77,7 +77,7 @@ const AdminScreen = ({navigation, usersCollection, database}) => {
 
   return (
     <View style={style.container}>
-      <AdminDrawserNav navigation={navigation} />
+      <AdminDrawserNav navigationProps={navigation} />
     </View>
   );
 };

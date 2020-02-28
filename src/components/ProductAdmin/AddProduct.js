@@ -3,7 +3,7 @@ import {View, Picker, StyleSheet, ScrollView} from 'react-native';
 import {Button} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {TextInputField} from '../elements/TextInput';
+import {TextInputField} from '../../elements/TextInput';
 
 const style = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ const style = StyleSheet.create({
   },
 });
 
-const AdminScreen = ({navigation, usersCollection}) => {
+const AddProduct = ({navigation, usersCollection}) => {
   const [productName, setProductName] = useState(null);
   const [category, setCategory] = useState('tab1');
   const [amountPieceField, setAmountPieceField] = useState(null);
@@ -68,14 +68,8 @@ const AdminScreen = ({navigation, usersCollection}) => {
     {label: 'Tab8', value: 'tab8'},
   ];
 
-  const logout = async () => {
-    await AsyncStorage.clear();
-    navigation.navigate('Home');
-  };
-
   return (
     <View style={style.container}>
-      <Button title="Logout" onPress={() => logout()} />
       <ScrollView>
         <TextInputField
           placeholder="Entrez le nom de produit"
@@ -148,4 +142,4 @@ const AdminScreen = ({navigation, usersCollection}) => {
   );
 };
 
-export default AdminScreen;
+export default AddProduct;

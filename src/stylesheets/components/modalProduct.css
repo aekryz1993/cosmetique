@@ -1,0 +1,31 @@
+.container {
+  background-color: #23719ef1;
+  width: 80%;
+  height: 70%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.name {
+  font-size: 2rem;
+  margin-top: 10px;
+  text-align: center;
+  color: aliceblue;
+}
+
+.otherFieldsContainer {
+  align-items: center;
+}
+
+.otherFields {
+  margin-left: 0;
+  margin-top: 20px;
+  color: aliceblue;
+}
+
+.closebtn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 2;
+}

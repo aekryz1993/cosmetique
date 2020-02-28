@@ -2,6 +2,12 @@ apply plugin: "com.android.application"
 apply plugin: 'kotlin-android' 
 apply plugin: 'com.google.gms.google-services'
 
+project.ext.vectoricons = [
+    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
+]
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
 import com.android.build.OutputFile
 
 /**
@@ -196,6 +202,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':watermelondb') 
     implementation project(path: ":@react-native-firebase_auth")
+    implementation project(':react-native-vector-icons')
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

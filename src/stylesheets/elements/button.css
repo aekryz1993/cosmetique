@@ -1,0 +1,36 @@
+.container {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.add {
+  margin-bottom: 10px;
+  background-color: #537791;
+  flex: none;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+
+.text {
+  color: aliceblue;
+  font-size: 1.6rem;
+  padding: 7px 17px;
+}
+
+.fab {
+  background-color: brown;
+  position: absolute;
+  z-index: 3;
+  top: 85%;
+  right: 20px;
+  /* margin: 20px; */
+}
+
+.logoutBtn {
+  background-color: #537791;
+  margin-right: 10px;
+  border: 1px solid #fff;
+}

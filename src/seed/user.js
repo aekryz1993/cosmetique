@@ -11,7 +11,6 @@ export const addUser = (database, collection, body) => {
           .fetch();
 
         if (userExist.length !== 0) {
-          console.log(false);
           resolve(false);
           return;
         }

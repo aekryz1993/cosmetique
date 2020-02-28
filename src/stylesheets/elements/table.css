@@ -1,0 +1,29 @@
+.container {
+  flex: 1;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.header: {
+  height: 50px;
+  background-color: #537791;
+}
+
+.text: {
+  text-align: center; 
+  font-weight: 700; 
+  font-size: 20px;
+}
+
+.dataWrapper: {
+  margin-top: -1;
+}
+
+.height {
+  height: 80%;
+}
+
+.actionUD {
+  flex-direction: row;
+  justify-content: space-around;
+}

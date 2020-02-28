@@ -1,7 +1,7 @@
-// import 'react-native-gesture-handler';
 import React from 'react';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import {Provider as PaperProvider} from 'react-native-paper';
 
 import AuthLoadingScreen from './AuthLoadingScreen';
 import HomeScreen from '../HomeScreen';
@@ -87,14 +87,15 @@ const SwitchNavigation = props =>
           const {database} = navigation.state.params;
           createTodayFinance();
           return (
-            <AuthLoadingScreen navigation={navigation} database={database} />
+            <PaperProvider>
+              <AuthLoadingScreen navigation={navigation} database={database} />
+            </PaperProvider>
           );
         },
         navigationOptions: () => ({
           headerShown: false,
         }),
       },
-      // AuthLoading: AuthLoadingScreen,
       App: AppStack(props),
       Auth: AuthStack(props),
     },

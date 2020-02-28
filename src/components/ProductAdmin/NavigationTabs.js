@@ -135,7 +135,7 @@ const TabsNavigation = ({
       },
     },
     {
-      initialRouteName: 'Tab1',
+      initialRouteName: 'Tabac',
       tabBarOptions: {
         activeTintColor: '#222',
         scrollEnabled: true,
@@ -143,11 +143,11 @@ const TabsNavigation = ({
           fontSize: 12,
         },
         tabStyle: {
-          width: 120,
+          width: 114,
           height: 42,
         },
         style: {
-          backgroundColor: 'green',
+          backgroundColor: '#537791',
         },
         indicatorStyle: {
           backgroundColor: '#111',
