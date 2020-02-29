@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Picker, StyleSheet, ScrollView} from 'react-native';
-import {Button} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
+import {TextInput, Button} from 'react-native-paper';
 
 import {TextInputField} from '../../elements/TextInput';
 import {categories} from '../helpers/categories';
@@ -14,7 +14,13 @@ const style = StyleSheet.create({
   },
 });
 
-const AddProduct = ({navigation, usersCollection}) => {
+const AddProduct = ({
+  usersCollection,
+  setVisible,
+  setOperation,
+  setProduct,
+  modalStyle,
+}) => {
   const [productName, setProductName] = useState(null);
   const [category, setCategory] = useState('tab1');
   const [amountPieceField, setAmountPieceField] = useState(null);
@@ -23,6 +29,12 @@ const AddProduct = ({navigation, usersCollection}) => {
   const [buyingPricePack, setbuyingPricePack] = useState(null);
   const [sellingPricePiece, setsellingPricePiece] = useState(null);
   const [sellingPricePack, setsellingPricePack] = useState(null);
+
+  const _cancel = () => {
+    setVisible(false);
+    setOperation(null);
+    setProduct(null);
+  };
 
   const cleanFields = () => {
     setProductName(null);
@@ -34,7 +46,7 @@ const AddProduct = ({navigation, usersCollection}) => {
     setsellingPricePack(null);
   };
 
-  const addProduct = async () => {
+  const _confirm = async () => {
     const body = {
       productName,
       category,
@@ -59,74 +71,86 @@ const AddProduct = ({navigation, usersCollection}) => {
   };
 
   return (
-    <View style={style.container}>
-      <ScrollView>
-        <TextInputField
-          placeholder="Entrez le nom de produit"
-          onChangeText={t => setProductName(t)}
-          value={productName}
-          // errorMessage={error}
-        />
-
-        <Picker
-          selectedValue={category}
-          style={{height: 50, width: 150}}
-          onValueChange={itemValue => setCategory(itemValue)}>
-          {categories.map((_category, index) => (
-            <Picker.Item
-              key={index}
-              label={_category.label}
-              value={_category.value}
-            />
-          ))}
-        </Picker>
-
-        <TextInputField
-          placeholder="Entrez la quantité par piece"
-          label="Quantité par piece"
-          onChangeText={t => setAmountPieceField(t)}
-          value={amountPieceField}
-          // errorMessage={error}
-        />
-
-        <TextInputField
-          placeholder="Entrez la quantité par paquet"
-          label="Quantité par paquet"
-          onChangeText={t => setAmountPackField(t)}
-          value={amountPackField}
-          // errorMessage={error}
-        />
-
-        <TextInputField
-          placeholder="Prix d'achat par piece"
-          label="Entrez le prix d'achat par piece"
-          onChangeText={t => setbuyingPricePiece(t)}
-          // errorMessage={error}
-          value={buyingPricePiece}
-        />
-        <TextInputField
-          placeholder="Prix d'achat par paquet"
-          label="Entrez le prix d'achat par paquet"
-          onChangeText={t => setbuyingPricePack(t)}
-          // errorMessage={error}
-          value={buyingPricePack}
-        />
-        <TextInputField
-          placeholder="Entrez le prix de vente par piece"
-          label="Prix de vente par piece"
-          onChangeText={t => setsellingPricePiece(t)}
-          // errorMessage={error}
-          value={sellingPricePiece}
-        />
-        <TextInputField
-          placeholder="Entrez le prix de vente par paquet"
-          label="Prix de vente par paquet"
-          onChangeText={t => setsellingPricePack(t)}
-          // errorMessage={error}
-          value={sellingPricePack}
-        />
-
-        <Button title="Ajouter" onPress={() => addProduct()} />
+    <View>
+      <ScrollView style={{margin: 20}}>
+        <View className={modalStyle.topFields}>
+          <TextInput
+            mode="flat"
+            className={modalStyle.fieldItem}
+            label="Le nom de product"
+            value={productName}
+            onChangeText={ref => setProductName(ref)}
+            // paddingHorizontal={true}
+          />
+          <Picker
+            className={modalStyle.pickerBtn}
+            selectedValue={category}
+            onValueChange={itemValue => setCategory(itemValue)}>
+            {categories.map((_category, index) => (
+              <Picker.Item
+                key={index}
+                label={_category.label}
+                value={_category.value}
+              />
+            ))}
+          </Picker>
+        </View>
+        <View className={modalStyle.topFields}>
+          <TextInput
+            mode="flat"
+            className={modalStyle.fieldItem}
+            label="La quantité (Piéce)"
+            value={amountPieceField}
+            onChangeText={ref => setAmountPieceField(ref)}
+          />
+          <TextInput
+            mode="flat"
+            className={modalStyle.fieldItem}
+            label="La quantité (Paquet)"
+            value={amountPackField}
+            onChangeText={ref => setAmountPackField(ref)}
+          />
+        </View>
+        <View className={modalStyle.topFields}>
+          <TextInput
+            mode="flat"
+            className={modalStyle.fieldItem}
+            label="Prix d'achat (Piéce)"
+            value={buyingPricePiece}
+            onChangeText={ref => setbuyingPricePiece(ref)}
+          />
+          <TextInput
+            mode="flat"
+            className={modalStyle.fieldItem}
+            label="Prix d'achat (Paquet)"
+            value={buyingPricePack}
+            onChangeText={ref => setbuyingPricePack(ref)}
+          />
+        </View>
+        <View className={modalStyle.topFields}>
+          <TextInput
+            mode="flat"
+            className={modalStyle.fieldItem}
+            label="Prix de vente (Piéce)"
+            value={sellingPricePiece}
+            onChangeText={ref => setsellingPricePiece(ref)}
+          />
+          <TextInput
+            mode="flat"
+            className={modalStyle.fieldItem}
+            label="Prix de vente (Paquet)"
+            value={sellingPricePack}
+            onChangeText={ref => setsellingPricePack(ref)}
+          />
+        </View>
+        <View className={modalStyle.btnsView}>
+          <Button mode="flat" onPress={_cancel}>
+            Annuler
+          </Button>
+          <Button mode="contained" onPress={_confirm}>
+            Ajouter
+          </Button>
+        </View>
       </ScrollView>
     </View>
   );

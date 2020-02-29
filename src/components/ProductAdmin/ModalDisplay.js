@@ -29,8 +29,9 @@ const ModalDisplay = ({
       animationIn={'slideInLeft'}
       animationInTiming={500}
       animationOut={'slideOutRight'}
-      animationOutTiming={500}
-      avoidKeyboard={true}>
+      animationOutTiming={300}
+      avoidKeyboard={true}
+      style={operation === 'delete' && modalStyle.smallContainer}>
       <View style={modalStyle.container}>
         <TouchableOpacity style={modalStyle.closebtn} onPress={_closeModal}>
           <Image source={require('../../../public/images/close.png')} />
@@ -45,6 +46,10 @@ const ModalDisplay = ({
           <AddProduct
             navigation={navigation}
             usersCollection={usersCollection}
+            setProduct={setProduct}
+            modalStyle={modalStyle}
+            setVisible={setVisible}
+            setOperation={setOperation}
           />
         )}
 

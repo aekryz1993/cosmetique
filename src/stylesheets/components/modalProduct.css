@@ -3,9 +3,14 @@
   flex: 1;
 }
 
+.smallContainer {
+  margin: 70px 80px 90px;
+}
+
 .name {
-  font-size: 2rem;
-  margin-top: 10px;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   color: aliceblue;
 }
@@ -27,6 +32,12 @@
   z-index: 2;
 }
 
+.btnContainer {
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
 .topFields {
   flex-direction: row;
   justify-content: space-around;
@@ -36,7 +47,6 @@
 .fieldItem {
   flex-basis: 40%;
   font-size: .8rem;
-  /* height: 30px; */
 }
 
 .btnsView {

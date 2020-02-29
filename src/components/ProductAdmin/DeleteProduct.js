@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import {Button} from 'react-native-paper';
 
 const DeleteProduct = ({
   product,
@@ -23,18 +24,18 @@ const DeleteProduct = ({
 
   const productName = product && product._raw ? product._raw.name : '';
   return (
-    <View style={modalStyle.container}>
+    <View>
       <Text
         style={
           modalStyle.name
-        }>{`Etes-vous sûr de vouloir supprimer ${productName}`}</Text>
+        }>{`Etes-vous sûr de vouloir supprimer ${productName}?`}</Text>
       <View style={modalStyle.btnContainer}>
-        <TouchableOpacity onPress={_cancel}>
-          <Text>Annuler</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={_confirm}>
-          <Text>Confirmer</Text>
-        </TouchableOpacity>
+        <Button mode="flat" onPress={_cancel}>
+          Annuler
+        </Button>
+        <Button mode="flat" onPress={_confirm}>
+          Confirmer
+        </Button>
       </View>
     </View>
   );

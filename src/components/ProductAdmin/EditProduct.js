@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Picker, StyleSheet, ScrollView} from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
-import RNPickerSelect from 'react-native-picker-select';
-import {Icon} from 'react-native-elements';
+// import RNPickerSelect from 'react-native-picker-select';
+// import {Icon} from 'react-native-elements';
 
 import {categories} from '../helpers/categories';
 
@@ -58,7 +58,7 @@ const EditProduct = ({
   };
 
   return (
-    <View style={modalStyle.container}>
+    <View>
       <ScrollView style={{margin: 20}}>
         <View className={modalStyle.topFields}>
           <TextInput
@@ -67,7 +67,7 @@ const EditProduct = ({
             label="Le nom de product"
             value={productName}
             onChangeText={ref => setProductName(ref)}
-            paddingHorizontal={true}
+            // paddingHorizontal={true}
           />
           <Picker
             className={modalStyle.pickerBtn}
@@ -81,48 +81,6 @@ const EditProduct = ({
               />
             ))}
           </Picker>
-          {/* <RNPickerSelect
-            placeholder={placeholder}
-            items={sports}
-            onValueChange={value => {
-              this.setState({
-                favSport4: value,
-              });
-            }}
-            style={{
-              ...pickerSelectStyles,
-              iconContainer: {
-                top: 10,
-                right: 12,
-              },
-            }}
-            value={this.state.favSport4}
-            useNativeAndroidPickerStyle={false}
-            textInputProps={{ underlineColor: 'yellow' }}
-            Icon={() => {
-              return <Ionicons name="md-arrow-down" size={24} color="gray" />;
-            }}
-          /> */}
-          {/* <RNPickerSelect
-            value={category}
-            onValueChange={value => setCategory(value)}
-            items={categories}
-            style={{
-              ...pickerSelectStyles,
-              // iconContainer: {
-              // },
-            }}
-            Icon={() => {
-              return (
-                <Icon
-                  name="arrow-drop-down"
-                  type="material"
-                  size={48}
-                  color="#eee"
-                />
-              );
-            }}
-          /> */}
         </View>
         <View className={modalStyle.topFields}>
           <TextInput
