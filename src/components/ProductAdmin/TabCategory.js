@@ -37,7 +37,9 @@ const TabCategory = ({
   const [product, setProduct] = useState(null);
 
   const _editProduct = data => {
-    console.log(data);
+    setProduct(data);
+    setOperation('update');
+    setModalOpened(true);
   };
 
   const _deleteProduct = data => {

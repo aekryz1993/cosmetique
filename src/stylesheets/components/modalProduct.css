@@ -26,3 +26,27 @@
   top: 5px;
   z-index: 2;
 }
+
+.topFields {
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.fieldItem {
+  flex-basis: 40%;
+  font-size: .8rem;
+  /* height: 30px; */
+}
+
+.btnsView {
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 37px;
+}
+
+.pickerBtn {
+  flex-basis: 40%;
+  font-size: .8rem;
+  height: 50;
+}

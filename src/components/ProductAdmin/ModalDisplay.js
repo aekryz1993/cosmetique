@@ -6,6 +6,7 @@ import modalStyle from '../../stylesheets/components/modalProduct.css';
 import AddProduct from './AddProduct';
 import DeleteProduct from './DeleteProduct';
 import DisplayProduct from './DisplayProduct';
+import EditProduct from './EditProduct';
 
 const ModalDisplay = ({
   visible,
@@ -44,6 +45,16 @@ const ModalDisplay = ({
           <AddProduct
             navigation={navigation}
             usersCollection={usersCollection}
+          />
+        )}
+
+        {operation === 'update' && (
+          <EditProduct
+            product={product}
+            setProduct={setProduct}
+            modalStyle={modalStyle}
+            setVisible={setVisible}
+            setOperation={setOperation}
           />
         )}
 

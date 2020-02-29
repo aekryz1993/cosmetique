@@ -4,6 +4,7 @@ import {Button} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import {TextInputField} from '../../elements/TextInput';
+import {categories} from '../helpers/categories';
 
 const style = StyleSheet.create({
   container: {
@@ -56,17 +57,6 @@ const AddProduct = ({navigation, usersCollection}) => {
     user.addProduct(body);
     cleanFields();
   };
-
-  const categories = [
-    {label: 'Tabac', value: 'tab1'},
-    {label: 'Boisson', value: 'tab2'},
-    {label: 'Bonbons', value: 'tab3'},
-    {label: 'Chocolat', value: 'tab4'},
-    {label: 'Cosmétique', value: 'tab5'},
-    {label: 'Informatique', value: 'tab6'},
-    {label: 'Flexy', value: 'tab7'},
-    {label: 'Tab8', value: 'tab8'},
-  ];
 
   return (
     <View style={style.container}>
